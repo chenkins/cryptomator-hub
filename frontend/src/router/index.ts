@@ -9,10 +9,12 @@ import LogoutComponent from '../components/Logout.vue';
 import MainComponent from '../components/Main.vue';
 import Settings from '../components/Settings.vue';
 import SetupComponent from '../components/Setup.vue';
+import TestAppleComponent from '../components/TestApple.vue';
 import UnlockError from '../components/UnlockError.vue';
 import UnlockSuccess from '../components/UnlockSuccess.vue';
 import VaultDetails from '../components/VaultDetails.vue';
 import VaultList from '../components/VaultList.vue';
+
 
 const routes: RouteRecordRaw[] = [
   {
@@ -30,6 +32,10 @@ const routes: RouteRecordRaw[] = [
         next(error);
       });
     }
+  },
+  {
+    path: '/test',
+    component: TestAppleComponent,
   },
   {
     path: '/setup',
