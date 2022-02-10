@@ -11,8 +11,9 @@
   },
   "ts-node": {
     "compilerOptions": {
-      "module": "CommonJS"
-    }
+      "module": "commonjs"
+    },
+    "exclude":["test/components/*"],
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "test/components/CreateVault.spec.ts"]
 }
