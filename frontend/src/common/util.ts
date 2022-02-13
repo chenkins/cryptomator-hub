@@ -25,3 +25,32 @@ export class Deferred<T> {
   }
 
 }
+
+export enum MaybeType {
+  Some = 'maybe-type__some',
+  None = 'maybe-type__none',
+}
+
+interface Some<T> {
+  type: typeof MaybeType.Some,
+  value: T,
+}
+
+interface None {
+  type: typeof MaybeType.None
+}
+
+export type Maybe<T>
+  = Some<T>
+  | None;
+
+export const None = (): None => ({
+  type: MaybeType.None,
+});
+
+export const Some = <T>(value: T): Some<T> => ({
+  type: MaybeType.Some,
+  value,
+});
+
+

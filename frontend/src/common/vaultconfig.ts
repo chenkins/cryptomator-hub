@@ -1,7 +1,8 @@
 import JSZip from 'jszip';
-import config from '../common/config';
+import configWrapper from '../common/config';
 import { Masterkey, VaultConfigHeaderHub, VaultConfigPayload } from '../common/crypto';
 
+const config = await configWrapper.get();
 export class VaultConfig {
 
   readonly vaultConfigToken: string;
@@ -17,8 +18,8 @@ export class VaultConfig {
 
     const hubConfig: VaultConfigHeaderHub = {
       clientId: 'cryptomator-hub',
-      authEndpoint: `${config.get().keycloakUrl}realms/cryptomator/protocol/openid-connect/auth`, // TODO: read full endpoint url from config
-      tokenEndpoint: `${config.get().keycloakUrl}realms/cryptomator/protocol/openid-connect/token`,
+      authEndpoint: `${config.keycloakUrl}realms/cryptomator/protocol/openid-connect/auth`, // TODO: read full endpoint url from config
+      tokenEndpoint: `${config.keycloakUrl}realms/cryptomator/protocol/openid-connect/token`,
       deviceRegistrationUrl: `${location.protocol}//${location.host}${import.meta.env.BASE_URL}#/devices/register?vault=${vaultId}`,
       authSuccessUrl: `${location.protocol}//${location.host}${import.meta.env.BASE_URL}#/unlock-success?vault=${vaultId}`,
       authErrorUrl: `${location.protocol}//${location.host}${import.meta.env.BASE_URL}#/unlock-error?vault=${vaultId}`

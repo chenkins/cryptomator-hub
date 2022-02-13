@@ -1,18 +1,26 @@
 import { mount } from '@cypress/vue';
-import App from '../../src/App.vue';
+import { useI18n } from 'vue-i18n';
 import CreateVault from '../../src/components/CreateVault.vue';
 
-const createApp = () => {
-  return mount(App, {
-    global: {
-
-    }
-  });
-};
-
 describe('CreateVault', () => {
+  beforeEach(() => {
+    cy.intercept('GET', '/setup', {
+      statusCode: 200,
+      body: {
+        setupCompleted: true,
+        keycloakUrl: 'url'
+      },
+    });
+  });
+
+  before(() => {
+    cy.stub(useI18n, 'apply')
+      .callsFake((_arg1) => {
+        return { t: (key: string, ...args: any) => 'Foo' };
+      });
+  });
+
   it('is shown in cypress', () => {
-    const wrapper = createApp();
     mount(CreateVault);
   });
 });

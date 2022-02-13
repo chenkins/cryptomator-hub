@@ -1,6 +1,7 @@
 import newKeycloak, { KeycloakInstance } from 'keycloak-js';
-import config, { ConfigDto } from './config';
+import configWrapper, { ConfigDto } from './config';
 
+const config = await configWrapper.get();
 class Auth {
   private readonly keycloak: KeycloakInstance;
 
@@ -51,8 +52,9 @@ class Auth {
 
 // this is a lazy singleton:
 const instance: Promise<Auth> = (async () => {
-  await config.awaitSetupCompletion();
-  return await Auth.build(config.get());
+  await configWrapper.awaitSetupCompletion();
+  return await Auth.build(config);
 })();
+
 
 export default instance;

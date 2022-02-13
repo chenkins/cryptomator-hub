@@ -109,7 +109,7 @@ class ExportingTemplateFailedError extends Error {
   }
 }
 
-const { t } = useI18n({ useScope: 'global' });
+const { t } = useI18n.apply({ useScope: 'global' });
 
 const form = ref<HTMLFormElement>();
 

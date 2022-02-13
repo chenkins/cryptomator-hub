@@ -173,7 +173,7 @@ const hubUser = ref('owner');
 const hubEmail = ref('');
 const hubPass = ref('');
 const hubRealmCfg = ref('');
-const kcUrl = ref(config.get().keycloakUrl);
+const kcUrl = ref( (await config.get()).keycloakUrl);
 const kcUser = ref('admin');
 const kcPass = ref('admin');
 

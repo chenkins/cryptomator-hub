@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import authPromise from '../common/auth';
 import backend from '../common/backend';
-import config from '../common/config';
+import configWrapper from '../common/config';
 import CreateVault from '../components/CreateVault.vue';
 import DeviceList from '../components/DeviceList.vue';
 import LoginComponent from '../components/Login.vue';
@@ -15,6 +15,7 @@ import UnlockSuccess from '../components/UnlockSuccess.vue';
 import VaultDetails from '../components/VaultDetails.vue';
 import VaultList from '../components/VaultList.vue';
 
+const config = await configWrapper.get();
 
 const routes: RouteRecordRaw[] = [
   {
@@ -106,7 +107,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if (to.meta.skipSetup) {
     next();
-  } else if (config.get().setupCompleted) {
+  } else if (config.setupCompleted) {
     next();
   } else {
     next({ path: '/setup' });
