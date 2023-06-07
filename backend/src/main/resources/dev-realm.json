@@ -80,6 +80,24 @@
       "realmRoles": [
         "syncer"
       ]
+    },
+    {
+      "username": "user001",
+      "email": "user001@localhost",
+      "enabled": true,
+      "attributes": {
+        "picture": "https://cryptomator.org/img/logo.svg",
+        "policy": "consoleAdmin"
+      },
+      "credentials": [
+        {
+          "type": "password",
+          "value": "1234"
+        }
+      ],
+      "realmRoles": [
+        "user"
+      ]
     }
   ],
   "scopeMappings": [
@@ -741,7 +759,6 @@
         }
       ]
     }
-
   ],
   "browserSecurityHeaders": {
     "contentSecurityPolicy": "frame-src 'self'; frame-ancestors 'self' http://localhost:*; object-src 'none';"
